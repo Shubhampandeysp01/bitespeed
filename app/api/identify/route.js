@@ -74,6 +74,7 @@ export async function POST(request) {
                     where: { id: contact.id },
                     data: { linkPrecedence: "SECONDARY", linkedId:primaryContactId }
                 });
+                secondaryContactIds.push(existingContacts[0].id);
                 secondaryContactIds.push(updatedContact.id);
                 
                 console.log("Secondary contact: "+ secondaryContactIds)
@@ -94,6 +95,7 @@ export async function POST(request) {
             phoneNumbers.push(newContact.phoneNumber);
             emails = [...new Set(emails)];
             phoneNumbers = [...new Set(phoneNumbers)];
+            secondaryContactIds = [...new Set(secondaryContactIds)];
             const responseObject = {
                 contact: {
                     primaryContactId,
@@ -124,6 +126,7 @@ export async function POST(request) {
 
         emails = [...new Set(emails)];
         phoneNumbers = [...new Set(phoneNumbers)];
+        secondaryContactIds = [...new Set(secondaryContactIds)];
         console.log(emails)
         console.log(phoneNumbers)
 
