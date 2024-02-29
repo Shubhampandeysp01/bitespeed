@@ -13,7 +13,10 @@ export default function Identify() {
   const router = useRouter();
 
   const handlePhoneNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(event.target.value);
+    const input = event.target.value;
+    const cleanedInput = input.replace(/\D/g, '');
+    const truncatedInput = cleanedInput.slice(0, 10);
+    setPhoneNumber(truncatedInput);
   };
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
