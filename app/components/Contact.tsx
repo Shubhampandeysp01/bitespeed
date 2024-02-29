@@ -9,7 +9,7 @@ interface ContactProps {
     deletedAt: Date | null;
   }
 
-  function formatDate(date: Date): string {
+  function FormatDate(date: Date): string {
     return date.toLocaleString();
   }
   
@@ -22,9 +22,9 @@ return(
         <h3>{email}</h3>
         <h3>{linkedId}</h3>
         <h3>{linkPrecedence}</h3>
-        <h3>Created At: {formatDate(createdAt)}</h3>
-      <h3>Updated At: {formatDate(updatedAt)}</h3>
-      <h3>Deleted At: {deletedAt ? formatDate(deletedAt) : 'Not Deleted'}</h3>
+        <h3>Created At: {FormatDate(createdAt)}</h3>
+      <h3>Updated At: {FormatDate(updatedAt)}</h3>
+      <h3>Deleted At: {deletedAt ? FormatDate(deletedAt) : 'Not Deleted'}</h3>
         
 
     </div>
