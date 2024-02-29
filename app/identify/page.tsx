@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter } from "next/navigation";
 
-export default function identify() {
+export default function Identify() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [response, setResponse] = useState<string | null>(null);
