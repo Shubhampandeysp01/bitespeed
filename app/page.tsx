@@ -10,7 +10,6 @@ async  function GetContact(){
 
 export default async function Home() {
   const contacts = await GetContact();
-  console.log(contacts);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Button href={'/identify'} variant="contained" color="primary">identify</Button>

@@ -34,7 +34,6 @@ export async function POST(request) {
                 }
             };
     
-            console.log(responseObject)
             return NextResponse.json(responseObject);}
         }
 
@@ -49,7 +48,6 @@ export async function POST(request) {
                 createdAt: 'asc' 
             }
         });
-        console.log("Existing Cotacts: "+ JSON.stringify(existingContacts))
 
         if (existingContacts.length > 0) {
             primaryContactId = existingContacts[0].id;
@@ -59,8 +57,6 @@ export async function POST(request) {
             });
             emails = existingContacts.map(contact => contact.email);
             phoneNumbers = existingContacts.map(contact => contact.phoneNumber);
-            console.log("Emails: "+ emails)
-            console.log("Phone Numbers: "+ phoneNumbers)
 
             if(existingContacts.length==1){
                 const firstcontact = existingContacts[0];
@@ -68,7 +64,6 @@ export async function POST(request) {
             }
 
             for (let i = 1; i < existingContacts.length; i++) {
-                console.log("Existing contact: "+ existingContacts[i])
                 const contact = existingContacts[i];
                 const updatedContact = await prisma.contact.update({
                     where: { id: contact.id },
@@ -77,7 +72,6 @@ export async function POST(request) {
                 secondaryContactIds.push(existingContacts[0].id);
                 secondaryContactIds.push(updatedContact.id);
                 
-                console.log("Secondary contact: "+ secondaryContactIds)
             }
 
 
@@ -105,7 +99,6 @@ export async function POST(request) {
                 }
             };
     
-            console.log(responseObject)
             return NextResponse.json(responseObject);
 
         } else{
@@ -115,20 +108,14 @@ export async function POST(request) {
                     email,
                 }
             });
-            console.log(newContact)
             primaryContactId = newContact.id;
             emails.push(newContact.email);
             phoneNumbers.push(newContact.phoneNumber);
-            console.log(primaryContactId)
-            console.log(emails)
-            console.log(phoneNumbers)
         
 
         emails = [...new Set(emails)];
         phoneNumbers = [...new Set(phoneNumbers)];
         secondaryContactIds = [...new Set(secondaryContactIds)];
-        console.log(emails)
-        console.log(phoneNumbers)
 
         const responseObject = {
             contact: {
@@ -139,12 +126,10 @@ export async function POST(request) {
             }
         };
 
-        console.log(responseObject)
         return NextResponse.json(responseObject);
         }
 
     } catch (error) {
-        console.error("Error processing request:", error);
         return NextResponse.error("Error processing request");
     }
 }
